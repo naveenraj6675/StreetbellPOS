@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="primary">#27A9E1</color>
+    <color name="primaryVariant">#E0E0E0</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="secondary">#5272AF</color>
+    <color name="secondaryVariant">#FFFFFF</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="error">#F44336</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="onSurface">#212121</color>
+    <color name="background">#FAFAFA</color>
+    <color name="nav_header_bg">#1c4e78</color>
+    <color name="nav_item_bg">#476d8f</color>
+    <color name="onBackground">#FAFAFA</color>
+
+    <color name="toolbar_bg">#F8F8F8</color>
+    <color name="semi_primary80">#F22CA9E1</color>
+
+    <color name="light_blue">#7BCCEA</color>
+    <color name="pale_blue">#D5EEF9</color>
+    <color name="exercise_bg">#D3EEF6</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="light_black">#5C5C5C</color>
+    <color name="mid_black">#454545</color>
+
+    <color name="after_grey">#999999</color>
+    <color name="light_grey">#C6C3C3</color>
+    <color name="mid_grey">#78849E</color>
+    <color name="semi_grey">#E0E0E0</color>
+    <color name="grey">#A98B8A8A</color>
+    <color name="loader_bg">#8c000000</color>
+    <color name="bg_transparent">#00000000</color>
+    <color name="header_gradient_start">#3b9dd4</color>
+    <color name="header_gradient_end">#348dc2</color>
+
+    <color name="fb_btn_blue">#3a5e9c</color>
+    <color name="login_btn_blue">#5472ae</color>
+
+
+    <color name="pale_green">#7eff80</color>
+    <color name="progress_wheel_green">#54b62d</color>
+
+    <color name="splash_color">#fbfbfb</color>
 </resources>
