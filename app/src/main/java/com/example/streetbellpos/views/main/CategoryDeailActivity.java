@@ -1,10 +1,13 @@
 package com.example.streetbellpos.views.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.streetbellpos.R;
+import com.example.streetbellpos.adapters.CategoryDeailRecyclerAdapter;
 import com.example.streetbellpos.constants.StreetBellConstants;
 import com.example.streetbellpos.models.gson.ProductCategories;
 import com.example.streetbellpos.views.base.StreetbellppCompatActivity;
@@ -20,17 +23,21 @@ public class CategoryDeailActivity extends StreetbellppCompatActivity {
 
     @BindView(R.id.tabRV)
     RecyclerView mTabRV;
-    Gson gson = new Gson();
-    private ArrayList<ProductCategories> mCategoryList;
 
+
+
+    Gson gson = new Gson();
+    private ArrayList<ProductCategories> mCategoryDeailList;
+    private CategoryDeailRecyclerAdapter mCatDeailAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_deail);
         ButterKnife.bind(this);
-        mCategoryList = new ArrayList<>();
+        mCategoryDeailList = new ArrayList<>();
         initProgress();
         initViews();
+        initRecyclerView(mCategoryDeailList);
     }
 
 
@@ -38,9 +45,19 @@ public class CategoryDeailActivity extends StreetbellppCompatActivity {
 
         String goalList = getSharedPrefManager().getPreference(StreetBellConstants.CATEGORY_LIST);
         ProductCategories[] goal = gson.fromJson(goalList, ProductCategories[].class);
-        if (goal != null)
-            mCategoryList.addAll(Arrays.asList(goal));
+        if (goal != null) {
+            mCategoryDeailList.addAll(Arrays.asList(goal));
+        }
 
+
+    }
+
+    private void initRecyclerView(ArrayList<ProductCategories> mList){
+        mTabRV.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        mCatDeailAdapter=new CategoryDeailRecyclerAdapter(this,mList,pos ->{
+
+        } );
+        mTabRV.setAdapter(mCatDeailAdapter);
 
     }
 

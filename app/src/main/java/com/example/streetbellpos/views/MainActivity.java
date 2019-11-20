@@ -72,6 +72,7 @@ public class MainActivity extends StreetbellppCompatActivity {
 
                 mCategoryList.add(0, new ProductCategories("", "Browse All", mProductList));
                 getSharedPrefManager().setPreference(StreetBellConstants.CATEGORY_LIST, gson.toJson(mCategoryList));
+
                 mCatAdapter.notifyDataSetChanged();
             }
 
