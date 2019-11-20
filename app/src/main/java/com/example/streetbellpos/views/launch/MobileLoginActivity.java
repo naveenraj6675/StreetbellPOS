@@ -59,7 +59,7 @@ public class MobileLoginActivity extends StreetbellppCompatActivity {
                 getSharedPrefManager().setPreference(StreetBellConstants.USER_ID, loginResponses.get(0).getUid());
                 getSharedPrefManager().setPreference(StreetBellConstants.PSI_NAME, loginResponses.get(0).getPsiName());
                 getSharedPrefManager().setPreference(StreetBellConstants.SHOP_ID, loginResponses.get(0).getShopId());
-
+                getSharedPrefManager().setPreference(StreetBellConstants.COUNTER_NUMBER, loginResponses.get(0).getTableNumber());
 
                 Intent intent = new Intent(this, MainLoginActivity.class);
                 startActivity(intent);
@@ -105,7 +105,7 @@ public class MobileLoginActivity extends StreetbellppCompatActivity {
 
     private void login() {
         showProgress();
-        JSONObject jsonObject = new JSONObject();
+
         JSONObject userObject = new JSONObject();
 
         String deviceId = "4b62b331bceee41f";

@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.streetbellpos.managers.RetrofitManager;
 import com.example.streetbellpos.models.gson.LoginResponse;
+import com.example.streetbellpos.models.gson.MainLoginResponse;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
 
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<LoginResponse>> mobileLoginMutableLiveData = new MutableLiveData<ArrayList<LoginResponse>>();
+    private MutableLiveData<ArrayList<MainLoginResponse>> passwordCheckMutableLiveData = new MutableLiveData<>();
 
     public LaunchViewModel(@NonNull Application application) {
         super(application);
@@ -57,12 +59,49 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
 
     }
 
+
+    public void mainLogin(JsonObject gsonObject) {
+        RetrofitManager.getInstance(getApplication()).getLaunchApi().getMainLogin(gsonObject).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<ArrayList<MainLoginResponse>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("Subscribe On", d.toString());
+            }
+
+            @Override
+            public void onNext(ArrayList<MainLoginResponse> mainLoginResponses) {
+                if (mainLoginResponses.get(0).getError().equals("")) {
+                    passwordCheckMutableLiveData.postValue(mainLoginResponses);
+
+                } else {
+                    errorLiveData.postValue(mainLoginResponses.get(0).getStatusMsg());
+                }
+
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                errorLiveData.postValue(e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d("Complete On", "Passsword Login Complete");
+            }
+        });
+
+    }
+
     public MutableLiveData<ArrayList<LoginResponse>> getMobileLoginMutableLiveData() {
         return mobileLoginMutableLiveData;
     }
 
+    public MutableLiveData<ArrayList<MainLoginResponse>> getMainLoginMutableLiveData() {
+        return passwordCheckMutableLiveData;
+    }
     public MutableLiveData<String> getErrorLiveData() {
         return errorLiveData;
     }
+
 
 }

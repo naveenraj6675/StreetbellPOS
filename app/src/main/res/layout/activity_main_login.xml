@@ -5,70 +5,98 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.launch.MainLoginActivity">
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Psi Name"
-        android:layout_marginTop="70dp"
-        android:layout_margin="10dp"
-        android:id="@+id/psiname_TV"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/psiname_TV"
-        android:layout_marginTop="10dp"
-        android:id="@+id/psiname_TB"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="User id"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/psiname_TB"
-        android:layout_marginTop="20dp"
-        android:id="@+id/userid_TV"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/userid_TV"
-        android:layout_marginTop="10dp"
-        android:id="@+id/userid_TB"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        app:layout_constraintTop_toBottomOf="@+id/userid_TB"
-        android:id="@+id/password_TV"
-        android:layout_marginTop="20dp"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/password_TV"
-        android:inputType="textPassword"
-        android:layout_marginTop="10dp"
-        android:id="@+id/password_TB"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Counter Number"
-        android:id="@+id/counternumber_TV"
-        app:layout_constraintTop_toBottomOf="@+id/password_TB"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/counternumber_TV"
-        android:id="@+id/countnumber_TB"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/login_btn"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/psiname_TV"
+            style="@style/TextView.Black.Medium.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="70dp"
+            android:text="Psi Name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/psiname_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_corner_curved_gray"
+            android:padding="@dimen/padding_10x"
+            app:layout_constraintTop_toBottomOf="@+id/psiname_TV" />
+
+        <TextView
+            android:id="@+id/userid_dummy_tv"
+            style="@style/TextView.Black.Medium.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="User id"
+            app:layout_constraintTop_toBottomOf="@+id/psiname_tv" />
+
+        <TextView
+            android:id="@+id/userid_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_corner_curved_gray"
+            android:padding="@dimen/padding_10x"
+            app:layout_constraintTop_toBottomOf="@+id/userid_dummy_tv" />
+
+        <TextView
+            android:id="@+id/password_TV"
+            style="@style/TextView.Black.Medium.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Password"
+            app:layout_constraintTop_toBottomOf="@+id/userid_tv" />
+
+        <EditText
+            android:id="@+id/password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10x"
+            android:background="@drawable/shape_corner_curved_gray"
+            android:inputType="textPassword"
+            android:padding="@dimen/padding_10x"
+            app:layout_constraintTop_toBottomOf="@+id/password_TV" />
+
+        <TextView
+            android:id="@+id/counternumber_dummy_TV"
+            style="@style/TextView.Black.Medium.Regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10x"
+            android:text="Counter Number"
+            app:layout_constraintTop_toBottomOf="@+id/password_et" />
+
+        <TextView
+            android:id="@+id/countnumber_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10x"
+            android:background="@drawable/shape_corner_curved_gray"
+            android:padding="@dimen/margin_10x"
+            app:layout_constraintTop_toBottomOf="@+id/counternumber_dummy_TV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
-        app:layout_constraintTop_toBottomOf="@+id/countnumber_TB"
-        android:layout_marginTop="40dp"/>
+        android:id="@+id/login_btn"
+        android:layout_margin="@dimen/margin_10x"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 
