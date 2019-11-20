@@ -5,19 +5,16 @@ import android.content.ContextWrapper;
 
 import com.example.streetbellpos.R;
 import com.example.streetbellpos.managers.helper.ConnectivityInterceptor;
+import com.example.streetbellpos.managers.retrofit.LaunchApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.ResponseBody;
-import retrofit2.Converter;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -62,12 +59,6 @@ public class RetrofitManager extends ContextWrapper {
         return userRetrofit;
     }
 
-    private Retrofit getFileUploadRetrofit(String contentType) {
-        if (fileUploadRetrofit == null) {
-            createFileUploadRetrofit(contentType);
-        }
-        return fileUploadRetrofit;
-    }
 
     private Retrofit getRefreshTokenRetrofit() {
         if (refreshTokenRetrofit == null) {
@@ -88,13 +79,15 @@ public class RetrofitManager extends ContextWrapper {
                 Request request = original.newBuilder()
                         .header("Content-Type", "application/json")
                         .header("Accept", "application/json")
-                        .method(original.method(), original.body())
                         .build();
 
                 return chain.proceed(request);
             }
         });
 
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        httpClient.addInterceptor(logInterceptor);
 
         OkHttpClient client = httpClient.build();
 
@@ -113,8 +106,6 @@ public class RetrofitManager extends ContextWrapper {
             Request request = original.newBuilder()
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
-
-                    .method(original.method(), original.body())
                     .build();
 
             return chain.proceed(request);
@@ -131,33 +122,10 @@ public class RetrofitManager extends ContextWrapper {
     }
 
 
-    private void createFileUploadRetrofit(String contentType) {
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder().addInterceptor(new ConnectivityInterceptor(getApplicationContext()));
-        httpClient.addInterceptor(chain -> {
-            Request original = chain.request();
-
-            Request request = original.newBuilder()
-                    .header("Content-Type", "image/png")
-                    .method(original.method(), original.body())
-                    .build();
-
-            return chain.proceed(request);
-        });
-
-
-        OkHttpClient client = httpClient
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS)
-                .build();
-//        userRetrofit = new Retrofit.Builder().baseUrl(getBaseContext().getString(R.string.base_url) + getBaseContext().getString(R.string.api_version))
-        fileUploadRetrofit = new Retrofit.Builder().baseUrl(getString(R.string.base_url))
-                .addConverterFactory(new NullOnEmptyConverterFactory())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(client)
-                .build();
+    public LaunchApi getLaunchApi() {
+        return getDefaultRetrofit().create(LaunchApi.class);
     }
+
 
     public void clearToken() {
         userRetrofit = null;
@@ -165,20 +133,6 @@ public class RetrofitManager extends ContextWrapper {
         refreshTokenRetrofit = null;
     }
 
-    public class NullOnEmptyConverterFactory extends Converter.Factory {
 
-        @Override
-        public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-            final Converter<ResponseBody, ?> delegate = retrofit.nextResponseBodyConverter(this, type, annotations);
-            return new Converter<ResponseBody, Object>() {
-                @Override
-                public Object convert(ResponseBody body) throws IOException {
-                    if (body.contentLength() == 0)
-                        return "success";
-                    return delegate.convert(body);
-                }
-            };
-        }
-    }
 
 }

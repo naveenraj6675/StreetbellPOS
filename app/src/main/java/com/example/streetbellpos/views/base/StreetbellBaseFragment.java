@@ -90,7 +90,7 @@ public abstract class StreetbellBaseFragment extends Fragment {
 
 
     //Call this method while setting up Viewmodel to init progress
-//    protected void setUpLoader(MBodyBaseViewModel viewModel) {
+//    protected void setUpLoader(StreetbellBaseViewModel viewModel) {
 //        viewModel.getLoadingLiveData().observe(this, loaderStatus -> {
 //            switch (loaderStatus.getLoader()) {
 //                case LOADER_STATUS.NONE:

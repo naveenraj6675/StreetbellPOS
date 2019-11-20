@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">StreetbellPOS</string>
-    <string name="base_url">https://</string>
+    <string name="base_url">https://streetbell.com/api/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="streetbell">Streetbell POS</string>
+    <string name="mobile_number">Mobile Numnber</string>
+    <string name="code">Code</string>
+    <string name="next">Next</string>
+    <string name="enter_code">Enter the code!!</string>
+    <string name="enter_number">Please enter mobile number</string>
 </resources>

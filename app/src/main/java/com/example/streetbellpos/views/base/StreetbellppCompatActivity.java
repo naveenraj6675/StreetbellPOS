@@ -46,13 +46,14 @@ public abstract class StreetbellppCompatActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(color);
             //TODO - figure out how to change color of all views
         }
-        initProgress();
+
     }
 
     //Initializing the progress view
-    private void initProgress() {
+    public void initProgress() {
         mBaseView = this.findViewById(android.R.id.content);
         mLoaderView = View.inflate(this, R.layout.loader, null);
+        initObservers();
     }
 
     //To show loader progress
@@ -79,7 +80,7 @@ public abstract class StreetbellppCompatActivity extends AppCompatActivity {
     }
 
     //Call this method while setting up Viewmodel to init progress
-//    protected void setUpLoader(MBodyBaseViewModel viewModel) {
+//    protected void setUpLoader(StreetbellBaseViewModel viewModel) {
 //        viewModel.getLoadingLiveData().observe(this, loaderStatus -> {
 //            switch (loaderStatus.getLoader()) {
 //                case LOADER_STATUS.NONE:

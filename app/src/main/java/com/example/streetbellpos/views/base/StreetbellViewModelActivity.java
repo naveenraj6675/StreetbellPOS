@@ -25,7 +25,7 @@ public abstract class StreetbellViewModelActivity extends StreetbellppCompatActi
 //        initProgress();
     }
 
-//    protected void setUpViewModel(MBodyBaseViewModel baseViewModel) {
+//    protected void setUpViewModel(StreetbellBaseViewModel baseViewModel) {
 //        baseViewModel.getLoadingLiveData().observe(this, loaderStatus -> {
 //            switch (loaderStatus.getLoader()) {
 //                case LOADER_STATUS.NONE:
@@ -66,7 +66,7 @@ public abstract class StreetbellViewModelActivity extends StreetbellppCompatActi
 //    }
 
 
-    private void initProgress() {
+    public void initProgress() {
         mBaseView = this.findViewById(android.R.id.content);
         mLoaderView = View.inflate(this, R.layout.loader, null);
         mLoader = mLoaderView.findViewById(R.id.loader);
