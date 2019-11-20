@@ -16,6 +16,7 @@ import com.example.streetbellpos.models.gson.Products;
 import com.example.streetbellpos.viewModel.MainViewmodel;
 import com.example.streetbellpos.views.base.StreetbellppCompatActivity;
 import com.example.streetbellpos.views.main.CategoryDeailActivity;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -35,6 +36,7 @@ public class MainActivity extends StreetbellppCompatActivity {
     private MainViewmodel mViewModel;
     private ArrayList<ProductCategories> mCategoryList;
     private ArrayList<Products> mProductList;
+    Gson gson = new Gson();
     private CategoryRecyclerAdapter mCatAdapter;
 
     @Override
@@ -69,7 +71,7 @@ public class MainActivity extends StreetbellppCompatActivity {
                 }
 
                 mCategoryList.add(0, new ProductCategories("", "Browse All", mProductList));
-
+                getSharedPrefManager().setPreference(StreetBellConstants.CATEGORY_LIST, gson.toJson(mCategoryList));
                 mCatAdapter.notifyDataSetChanged();
             }
 
