@@ -11,6 +11,7 @@ import com.example.streetbellpos.constants.StreetBellConstants;
 import com.example.streetbellpos.helpers.FormValidator;
 import com.example.streetbellpos.models.gson.LoginResponse;
 import com.example.streetbellpos.viewModel.LaunchViewModel;
+import com.example.streetbellpos.views.MainActivity;
 import com.example.streetbellpos.views.base.StreetbellppCompatActivity;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -38,8 +39,8 @@ public class MobileLoginActivity extends StreetbellppCompatActivity {
         setContentView(R.layout.activity_mobile_login);
         ButterKnife.bind(this);
         mViewModel = ViewModelProviders.of(this).get(LaunchViewModel.class);
-
         initProgress();
+        initViews();
 
 
     }
@@ -135,5 +136,15 @@ public class MobileLoginActivity extends StreetbellppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private void initViews() {
+        if (getSharedPrefManager().getBooleanPreference(StreetBellConstants.IS_USER_LOGGED_IN)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            onResume();
+        }
     }
 }

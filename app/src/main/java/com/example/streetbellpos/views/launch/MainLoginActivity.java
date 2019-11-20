@@ -56,6 +56,7 @@ public class MainLoginActivity extends StreetbellppCompatActivity {
 
         mViewModel.getMainLoginMutableLiveData().observe(this, data -> {
             if (data.size() > 0) {
+                getSharedPrefManager().setPreference(StreetBellConstants.IS_USER_LOGGED_IN, true);
                 if (data.get(0).getStatusMsg().equals("your account is verified")) {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
