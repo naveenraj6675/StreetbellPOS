@@ -6,6 +6,7 @@ import android.content.ContextWrapper;
 import com.example.streetbellpos.R;
 import com.example.streetbellpos.managers.helper.ConnectivityInterceptor;
 import com.example.streetbellpos.managers.retrofit.LaunchApi;
+import com.example.streetbellpos.managers.retrofit.MainApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;
@@ -124,6 +125,10 @@ public class RetrofitManager extends ContextWrapper {
 
     public LaunchApi getLaunchApi() {
         return getDefaultRetrofit().create(LaunchApi.class);
+    }
+
+    public MainApi getMainApi() {
+        return getDefaultRetrofit().create(MainApi.class);
     }
 
 

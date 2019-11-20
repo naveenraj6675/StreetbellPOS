@@ -3,7 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.MainActivity">
 
+
+    <TextView
+        android:id="@+id/header_tv"
+        style="@style/TextView.Black.Medium.Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_15x"
+        android:gravity="center"
+        android:text="@string/streetbell"
+        app:layout_constraintEnd_toStartOf="@+id/home_iv"
+        app:layout_constraintStart_toEndOf="@+id/ic_sb"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_sb"
+        android:layout_width="@dimen/width_80x"
+        android:layout_height="@dimen/height_80x"
+        android:layout_margin="@dimen/margin_10x"
+        android:src="@drawable/sbicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/home_iv"
+        android:layout_width="@dimen/width_80x"
+        android:layout_height="@dimen/height_80x"
+        android:layout_margin="@dimen/margin_10x"
+        android:padding="@dimen/padding_10x"
+        android:src="@drawable/ic_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_10x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
