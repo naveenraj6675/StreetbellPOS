@@ -3,7 +3,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.launch.MainLoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Psi Name"
+        android:layout_marginTop="70dp"
+        android:layout_margin="10dp"
+        android:id="@+id/psiname_TV"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/psiname_TV"
+        android:layout_marginTop="10dp"
+        android:id="@+id/psiname_TB"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User id"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/psiname_TB"
+        android:layout_marginTop="20dp"
+        android:id="@+id/userid_TV"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/userid_TV"
+        android:layout_marginTop="10dp"
+        android:id="@+id/userid_TB"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        app:layout_constraintTop_toBottomOf="@+id/userid_TB"
+        android:id="@+id/password_TV"
+        android:layout_marginTop="20dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/password_TV"
+        android:inputType="textPassword"
+        android:layout_marginTop="10dp"
+        android:id="@+id/password_TB"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Counter Number"
+        android:id="@+id/counternumber_TV"
+        app:layout_constraintTop_toBottomOf="@+id/password_TB"
+        android:layout_marginTop="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/counternumber_TV"
+        android:id="@+id/countnumber_TB"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintTop_toBottomOf="@+id/countnumber_TB"
+        android:layout_marginTop="40dp"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
