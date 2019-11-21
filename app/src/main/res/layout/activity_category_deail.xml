@@ -6,11 +6,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.main.CategoryDeailActivity">
 
+    <ImageView
+        android:id="@+id/ic_sb"
+        android:layout_width="@dimen/width_80x"
+        android:layout_height="@dimen/height_60x"
+        android:layout_margin="@dimen/margin_10x"
+        android:src="@drawable/sbicon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/home_iv"
+        android:layout_width="@dimen/width_80x"
+        android:layout_height="@dimen/height_60x"
+        android:layout_margin="@dimen/margin_10x"
+        android:padding="@dimen/padding_10x"
+        android:src="@drawable/ic_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tabRV"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_80x"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="@dimen/height_60x"
+        app:layout_constraintTop_toBottomOf="@+id/home_iv" />
 
     <FrameLayout
         android:id="@+id/categoryFrame"

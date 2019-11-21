@@ -10,14 +10,19 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.streetbellpos.R;
 import com.example.streetbellpos.constants.StreetBellConstants;
 import com.example.streetbellpos.helpers.FormValidator;
+import com.example.streetbellpos.models.gson.ProductCategories;
+import com.example.streetbellpos.models.gson.Products;
 import com.example.streetbellpos.viewModel.LaunchViewModel;
 import com.example.streetbellpos.views.MainActivity;
 import com.example.streetbellpos.views.base.StreetbellppCompatActivity;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,12 +40,17 @@ public class MainLoginActivity extends StreetbellppCompatActivity {
 
     private String errorMsg;
     private LaunchViewModel mViewModel;
+    Gson gson = new Gson();
+    private ArrayList<ProductCategories> mCategoryList;
+    private ArrayList<Products> mProductList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
         ButterKnife.bind(this);
+        mCategoryList = new ArrayList<>();
+        mProductList = new ArrayList<>();
         mViewModel = ViewModelProviders.of(this).get(LaunchViewModel.class);
         initProgress();
         initViews();
@@ -58,9 +68,7 @@ public class MainLoginActivity extends StreetbellppCompatActivity {
             if (data.size() > 0) {
                 getSharedPrefManager().setPreference(StreetBellConstants.IS_USER_LOGGED_IN, true);
                 if (data.get(0).getStatusMsg().equals("your account is verified")) {
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    getCategory();
                 } else {
                     showSnackbar("something went wrong");
                 }
@@ -69,6 +77,27 @@ public class MainLoginActivity extends StreetbellppCompatActivity {
                 showSnackbar("User empty");
             }
         });
+
+
+        mViewModel.getCategoryResponseMutableLiveData().observe(this, categoryResponse -> {
+            hideProgress();
+            if (categoryResponse != null) {
+                mCategoryList.addAll(categoryResponse.getCategoriesList());
+
+                for (int i = 0; i < mCategoryList.size(); i++) {
+                    mProductList.addAll(mCategoryList.get(i).getProducts());
+                }
+                mCategoryList.add(0, new ProductCategories("", "Browse All", mProductList));
+
+                getSharedPrefManager().setPreference(StreetBellConstants.CATEGORY_LIST, gson.toJson(mCategoryList));
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
+        });
+
     }
 
 
@@ -137,6 +166,37 @@ public class MainLoginActivity extends StreetbellppCompatActivity {
         }
 
 
+    }
+
+
+    private void getCategory() {
+        showProgress();
+        JSONObject userObject = new JSONObject();
+
+        String deviceId = "4b62b331bceee41f";
+        String userId = getSharedPrefManager().getPreference(StreetBellConstants.USER_ID);
+
+//        @SuppressLint("HardwareIds")
+//        String deviceId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        String shopId = getSharedPrefManager().getPreference(StreetBellConstants.SHOP_ID);
+
+
+        try {
+            userObject.put("uid", userId);
+            userObject.put("deviceid", deviceId);
+            userObject.put("shopid", shopId);
+
+
+            JsonParser jsonParser = new JsonParser();
+            JsonObject gsonObject = (JsonObject) jsonParser.parse(userObject.toString());
+//            mViewModel.signIn(gsonObject);
+
+            mViewModel.getCategory(gsonObject);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 

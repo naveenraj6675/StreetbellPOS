@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/main_text"
-        style="@style/TextView.Black.Medium.Regular"
+        style="@style/TextView.Black.Caption.MontserrateRegular"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:clickable="false"
@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/spinner_text"
-        style="@style/TextView.Black.Medium.Regular"
+        style="@style/TextView.Black.Caption.MontserrateRegular"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/margin_8x"

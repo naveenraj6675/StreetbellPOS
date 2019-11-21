@@ -1,54 +1,48 @@
 package com.example.streetbellpos.views.main;
 
-import android.content.Context;
-import android.net.Uri;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import androidx.fragment.app.Fragment;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.streetbellpos.R;
+import com.example.streetbellpos.constants.StreetBellConstants;
+import com.example.streetbellpos.managers.GlideManager;
+import com.example.streetbellpos.models.gson.Products;
+import com.example.streetbellpos.options.GLIDE_TRANSFORM_OPTION;
+import com.example.streetbellpos.views.base.StreetbellBaseFragment;
+import com.google.gson.Gson;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ItemFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ItemFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ItemFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+public class ItemFragment extends StreetbellBaseFragment {
+    @BindView(R.id.product_name_tv)
+    TextView mProductNameTV;
+    @BindView(R.id.product_iv)
+    ImageView mProductIV;
+    @BindView(R.id.price_tv)
+    TextView mPriceTV;
+    @BindView(R.id.quantity_tv)
+    TextView mQuantityTV;
+    @BindView(R.id.add_to_basket_btn)
+    Button addToBasketBtn;
+    String productObj;
+    private Products mProducts;
+    private Gson gson;
 
-    public ItemFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ItemFragment newInstance(String param1, String param2) {
+    public static ItemFragment newInstance(Products products) {
         ItemFragment fragment = new ItemFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(StreetBellConstants.PRODUCT, Products.toJson(products));
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,54 +51,50 @@ public class ItemFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mProducts = Products.parse(getArguments().getString(StreetBellConstants.PRODUCT));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item, container, false);
-    }
+    protected void initObservers() {
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_item, container, false);
+        ButterKnife.bind(this, view);
+        initProgress(view);
+        gson = new Gson();
+        initViews();
+
+        return view;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private void initViews() {
+
+        mProductNameTV.setText(mProducts.getName());
+        GlideManager.loadImage(getActivity(), mProductIV, mProducts.getImageList().get(0).getUrl(), GLIDE_TRANSFORM_OPTION.NO_TRANSFORM);
+        mPriceTV.setText(mProducts.getPrice());
+
+
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @OnClick(R.id.add_to_basket_btn)
+    void onAddtoBasketClicked() {
+        productObj = gson.toJson(mProducts);
+
+
+        showConfirmation("No", "Yes", "POS", "Are you sure to add this to basket?", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                intent.putExtra(StreetBellConstants.PRODUCT, productObj);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
 }

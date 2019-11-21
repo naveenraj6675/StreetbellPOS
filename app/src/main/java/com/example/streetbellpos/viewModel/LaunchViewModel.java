@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.streetbellpos.managers.RetrofitManager;
+import com.example.streetbellpos.models.gson.CategoryResponse;
 import com.example.streetbellpos.models.gson.LoginResponse;
 import com.example.streetbellpos.models.gson.MainLoginResponse;
 import com.google.gson.JsonObject;
@@ -23,7 +24,7 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
     private MutableLiveData<String> errorLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<LoginResponse>> mobileLoginMutableLiveData = new MutableLiveData<ArrayList<LoginResponse>>();
     private MutableLiveData<ArrayList<MainLoginResponse>> passwordCheckMutableLiveData = new MutableLiveData<>();
-
+    private MutableLiveData<CategoryResponse> categoryResponseMutableLiveData = new MutableLiveData<>();
     public LaunchViewModel(@NonNull Application application) {
         super(application);
     }
@@ -91,6 +92,41 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
         });
 
     }
+
+    public void getCategory(JsonObject jsonObject) {
+        RetrofitManager.getInstance(getApplication()).getMainApi().getCategory(jsonObject).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<CategoryResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("Category", "Subscribe");
+            }
+
+            @Override
+            public void onNext(CategoryResponse categoryResponse) {
+                if (categoryResponse != null) {
+                    categoryResponseMutableLiveData.postValue(categoryResponse);
+                } else {
+                    errorLiveData.postValue(categoryResponse.getError());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                errorLiveData.postValue(e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d("Category", "Complete");
+            }
+        });
+    }
+
+    public MutableLiveData<CategoryResponse> getCategoryResponseMutableLiveData() {
+        return categoryResponseMutableLiveData;
+    }
+
+
+
 
     public MutableLiveData<ArrayList<LoginResponse>> getMobileLoginMutableLiveData() {
         return mobileLoginMutableLiveData;

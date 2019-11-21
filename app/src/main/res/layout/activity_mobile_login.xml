@@ -7,7 +7,7 @@
     tools:context=".views.launch.MobileLoginActivity">
 
     <TextView
-        style="@style/TextView.Black.XMedium.Regular"
+        style="@style/TextView.Black.Body1.MontserrateBold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_10x"
@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_25x"
+            style="@style/TextView.Black.Body1.MontserrateBold"
             android:text="@string/mobile_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_5x"
                 android:layout_weight="0.5"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
                 android:background="@drawable/shape_corner_curved_gray"
                 android:hint="@string/code"
                 android:imeOptions="actionNext"
@@ -59,6 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_5x"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
                 android:layout_weight="1.5"
                 android:background="@drawable/shape_corner_curved_gray"
                 android:hint="@string/mobile_number"
@@ -75,6 +78,7 @@
         android:id="@+id/next_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/TextView.Black.Body1.MontserrateBold"
         android:layout_margin="@dimen/margin_15x"
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -1,5 +1,7 @@
 package com.example.streetbellpos.models.gson;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -266,5 +268,16 @@ public class Products {
 
     public void setOtherCharges(String otherCharges) {
         this.otherCharges = otherCharges;
+    }
+
+
+    public static Products parse(String exerciseData) {
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        return gson.fromJson(exerciseData, Products.class);
+    }
+
+    public static String toJson(Products exercise) {
+        Gson gson = new GsonBuilder().serializeNulls().create();
+        return gson.toJson(exercise);
     }
 }

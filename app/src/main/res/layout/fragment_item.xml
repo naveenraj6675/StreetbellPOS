@@ -1,14 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_15x"
+    android:background="@drawable/shape_corner_curved_gray"
     android:layout_height="match_parent"
     tools:context=".views.main.ItemFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/product_name_tv"
+                style="@style/TextView.Black.Body1.MontserrateBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10x"
+                android:layout_marginTop="@dimen/margin_10x"
+                android:gravity="center_horizontal"
+                android:text="@string/streetbell"
+                android:textAllCaps="true"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/product_iv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_150x"
+                android:layout_margin="@dimen/margin_20x"
+                android:src="@drawable/sbicon"
+                app:layout_constraintTop_toBottomOf="@+id/product_name_tv" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/price_cl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_20x"
+                android:padding="@dimen/padding_10x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/product_iv">
+
+                <TextView
+                    android:id="@+id/price_dummy_tv"
+                    style="@style/TextView.Black.Caption.MontserrateRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="PRICE"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/price_tv"
+                    style="@style/TextView.Black.Caption.MontserrateRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10x"
+                    android:maxLines="1"
+                    android:text="25/person"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/price_dummy_tv" />
+
+                <ImageView
+                    android:id="@+id/minus_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10x"
+                    android:src="@drawable/ic_minus"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/price_tv" />
+
+                <TextView
+                    android:id="@+id/quantity_tv"
+                    style="@style/TextView.Black.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10x"
+                    android:gravity="center"
+                    android:text="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/minus_btn"
+                    app:layout_constraintStart_toEndOf="@+id/minus_btn"
+                    app:layout_constraintTop_toTopOf="@+id/minus_btn" />
+
+                <ImageView
+                    android:id="@+id/pluse_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10x"
+                    android:src="@drawable/ic_pluse"
+                    app:layout_constraintBottom_toBottomOf="@+id/quantity_tv"
+                    app:layout_constraintStart_toEndOf="@+id/quantity_tv"
+                    app:layout_constraintTop_toTopOf="@+id/quantity_tv" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/add_to_basket_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_30x"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_filled_primary_color"
+                android:paddingStart="@dimen/margin_10x"
+                android:paddingEnd="@dimen/margin_10x"
+                android:text="Add to basket"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/price_cl" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

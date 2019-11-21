@@ -16,9 +16,9 @@ import com.example.streetbellpos.options.GLIDE_TRANSFORM_OPTION;
 
 public class GlideManager {
 
-//    public static void loadImage(Context context, ImageView imageView, String url, @GLIDE_TRANSFORM_OPTION int glideTransformOption) {
-//        loadImage(context, imageView, url, 0, glideTransformOption);
-//    }
+    public static void loadImage(Context context, ImageView imageView, String url, @GLIDE_TRANSFORM_OPTION int glideTransformOption) {
+        loadImage(context, imageView, url, 0, glideTransformOption);
+    }
 
     public static void loadImage(Context context, ImageView imageView, String url, int placeHolder, @GLIDE_TRANSFORM_OPTION int glideTransformOption) {
 

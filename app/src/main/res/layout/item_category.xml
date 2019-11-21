@@ -7,10 +7,12 @@
 
     <Button
         android:id="@+id/category_btn"
-        style="@style/TextView.Black.Medium.Regular"
+        style="@style/TextView.Black.Subtitle1.MontserrateRegular"
         android:layout_width="@dimen/width_100x"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:layout_gravity="center"
+        android:text="@string/streetbell"
         android:layout_margin="@dimen/margin_10x"
         android:padding="@dimen/padding_10x" />
 

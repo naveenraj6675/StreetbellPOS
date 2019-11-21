@@ -65,30 +65,131 @@
 
     <!-- Black -->
 
+    <!-- Black -->
     <style name="TextView.Black" parent="TextView.Base">
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="TextView.Black.Small.Regular" parent="TextView.Black">
-        <item name="android:textSize">@dimen/small_text_size</item>
+    <style name="TextView.Black.Headline5" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
     </style>
 
-    <style name="TextView.Black.XSmall.Regular" parent="TextView.Black">
-        <item name="android:textSize">@dimen/xsmall_text_size</item>
+    <style name="TextView.Black.Headline5.Bold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextView.Black.Medium.Regular" parent="TextView.Black">
-        <item name="android:textSize">@dimen/medium_text_size</item>
+    <style name="TextView.Black.Headline5.MontserratSemiBold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextView.Black.XMedium.Regular" parent="TextView.Black">
-        <item name="android:textSize">@dimen/xmedium_text_size</item>
+    <style name="TextView.Black.Headline6" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
     </style>
 
-    <style name="TextView.Black.X10Large.Regular" parent="TextView.Black">
-        <item name="android:textSize">@dimen/x10_large_text_size</item>
+    <style name="TextView.Black.Headline6.Bold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextView.Black.Headline5.AgletSlab" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline5
+        </item>
+        <item name="android:fontFamily">@font/aglet_slab_bold</item>
+    </style>
+
+    <style name="TextView.Black.Headline6.AgletSlab" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:fontFamily">@font/aglet_slab_bold</item>
+    </style>
+
+    <style name="TextView.Black.Headline6.MontserrateMedium" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="TextView.Black.Headline6.MontserrateRegular" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="TextView.Black.Subtitle1.MontserrateMedium" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="TextView.Black.Subtitle1.MontserrateSemiBold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="TextView.Black.Subtitle1.MontserrateRegular" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="TextView.Black.Caption.MontserrateRegular" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="TextView.Black.Headline4.AgletSlab" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline4
+        </item>
+        <item name="android:fontFamily">@font/aglet_slab_bold</item>
+    </style>
+
+    <style name="TextView.Black.Body2.MontserrateSemiBold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="TextView.Black.Body2.MontserrateRegular" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="TextView.Black.Body2.MontserrateLight" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="TextView.Black.Body1" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style>
+
+    <style name="TextView.Black.Body1.AgletSlab" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:fontFamily">@font/aglet_slab_bold</item>
+    </style>
+
+    <style name="TextView.Black.Body1.MontserrateMedium" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="TextView.Black.Body1.MontserrateBold" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="TextView.Black.Body1.MontserratRegulat" parent="TextView.Black">
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
 
     <!-- Grey -->
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.launch.MainLoginActivity">
 
@@ -14,7 +15,7 @@
 
         <TextView
             android:id="@+id/psiname_TV"
-            style="@style/TextView.Black.Medium.Regular"
+            style="@style/TextView.Black.Body1.MontserrateBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -33,7 +34,7 @@
 
         <TextView
             android:id="@+id/userid_dummy_tv"
-            style="@style/TextView.Black.Medium.Regular"
+            style="@style/TextView.Black.Body1.MontserrateBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -52,7 +53,7 @@
 
         <TextView
             android:id="@+id/password_TV"
-            style="@style/TextView.Black.Medium.Regular"
+            style="@style/TextView.Black.Body1.MontserrateBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -72,7 +73,7 @@
 
         <TextView
             android:id="@+id/counternumber_dummy_TV"
-            style="@style/TextView.Black.Medium.Regular"
+            style="@style/TextView.Black.Body1.MontserrateBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_10x"
@@ -94,6 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
+        style="@style/TextView.Black.Body1.MontserrateBold"
         android:id="@+id/login_btn"
         android:layout_margin="@dimen/margin_10x"
         app:layout_constraintBottom_toBottomOf="parent" />

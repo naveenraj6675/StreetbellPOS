@@ -6,13 +6,14 @@
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/category_deail_btn"
-        style="@style/TextView.Black.Medium.Regular"
-        android:layout_width="@dimen/width_100x"
+        style="@style/TextView.Black.Subtitle1.MontserrateMedium"
+        android:layout_width="match_parent"
         android:background="@drawable/shape_corner_curved_gray"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:maxLines="1"
-        android:layout_margin="@dimen/margin_10x"
-        android:padding="@dimen/padding_10x" />
+        android:layout_margin="@dimen/margin_5x"
+        android:padding="@dimen/padding_8x"
+        android:text="asfjhbfas" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

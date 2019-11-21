@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/spinner_textView"
-        style="@style/TextView.Black.Medium.Regular"
+        style="@style/TextView.Black.Body1.MontserratRegulat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

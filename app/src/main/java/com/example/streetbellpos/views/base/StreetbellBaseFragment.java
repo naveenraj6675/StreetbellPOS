@@ -85,6 +85,7 @@ public abstract class StreetbellBaseFragment extends Fragment {
             if (futureShowProgress)
                 showProgress();
         }
+        initObservers();
 
     }
 

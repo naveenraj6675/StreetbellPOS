@@ -1,54 +1,47 @@
 package com.example.streetbellpos.views.main;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.streetbellpos.R;
+import com.example.streetbellpos.adapters.ProductRecyclerAdapter;
+import com.example.streetbellpos.constants.StreetBellConstants;
+import com.example.streetbellpos.models.gson.Products;
+import com.example.streetbellpos.views.base.StreetbellBaseFragment;
+import com.google.gson.Gson;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ItemDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ItemDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ItemDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-    private OnFragmentInteractionListener mListener;
+public class ItemDetailFragment extends StreetbellBaseFragment {
 
-    public ItemDetailFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ItemDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ItemDetailFragment newInstance(String param1, String param2) {
+    @BindView(R.id.category_detail_rv)
+    RecyclerView mCategoryDetailRV;
+    Gson gson = new Gson();
+    private String productString;
+    private ArrayList<Products> mProductList = new ArrayList<>();
+    private ProductListener mListener;
+    private ProductRecyclerAdapter mAdapter;
+
+    public static ItemDetailFragment newInstance(ArrayList<Products> mProductList) {
         ItemDetailFragment fragment = new ItemDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        Gson gson = new Gson();
+
+        args.putString(StreetBellConstants.PRODUCT_LIST, gson.toJson(mProductList));
+
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,54 +50,51 @@ public class ItemDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            String focusList = getArguments().getString(StreetBellConstants.PRODUCT_LIST);
+            Products[] foci = gson.fromJson(focusList, Products[].class);
+            mProductList.addAll(Arrays.asList(foci));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_detail, container, false);
-    }
+    protected void initObservers() {
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
-    public void onAttach(Context context) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_item_detail, container, false);
+        ButterKnife.bind(this, view);
+        initProgress(view);
+        initViews();
+        return view;
+    }
+
+
+    private void initViews() {
+
+        mCategoryDetailRV.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mAdapter = new ProductRecyclerAdapter(getActivity(), mProductList, new ProductRecyclerAdapter.ProductInterface() {
+            @Override
+            public void onProductClicked(int pos) {
+                mListener.onProducetClicked(mProductList.get(pos));
+            }
+        });
+        mCategoryDetailRV.setAdapter(mAdapter);
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+        if (context instanceof ProductListener) {
+            mListener = (ProductListener) context;
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public interface ProductListener {
+        void onProducetClicked(Products products);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
+
 }

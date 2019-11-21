@@ -10,6 +10,9 @@ public class StreetBellConstants {
     public static final String PSI_NAME = "PSI_NAME";
     public static final String SHOP_ID = "SHOP_ID";
     public static final String CATEGORY_LIST = "CATEGORY_LIST";
+    public static final String PRODUCT_LIST = "PRODUCT_LIST";
+    public static final String PRODUCT = "PRODUCT";
+    public static final String CLICKED_POS = "CLICKED_POS";
 
     public static final String COUNTER_NUMBER = "COUNTER_NUMBER";
 
