@@ -1,71 +1,99 @@
 package com.example.streetbellpos.adapters;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.streetbellpos.R;
 
 
 public class SpinnerAdapter extends ArrayAdapter<String> {
 
-    String[] spinnerArray;
-    LayoutInflater inflater;
-    String mainText;
-    Context mContext;
+    private Context mContext;
+    private String[] mObjects;
+    private String mFirstElement;
+    private boolean mIsFirstTime;
+//    private boolean needsWhite;
+//    private boolean needsGrey;
 
-    public SpinnerAdapter(Context context, int resource, String[] spinnerArray, String mainText) {
-        super(context, resource, spinnerArray);
-        this.spinnerArray = spinnerArray;
-        inflater = ((Activity) context).getLayoutInflater();
-        this.mainText = mainText;
+    //constructor
+    public SpinnerAdapter(@NonNull Context context, int textViewResourceId, String[] objects, String defaultText) {
+        super(context, textViewResourceId, objects);
         this.mContext = context;
+        this.mObjects = objects;
+        this.mIsFirstTime = true;
+//        this.needsWhite = needsWhite;
+//        this.needsGrey = needsGrey;
+        setDefaultText(defaultText);
+
     }
 
     @Override
-    public View getDropDownView(int position, View cnvtView, ViewGroup parent) {
-        return getCustomDropDownView(position, cnvtView, parent);
-    }
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        if (mIsFirstTime) {
+            mObjects[0] = mFirstElement;
+            mIsFirstTime = false;
 
-    @Override
-    public View getView(int pos, View cnvtView, ViewGroup parent) {
-        return getCustomView(pos, cnvtView, parent);
-    }
-
-    private View getCustomView(int position, View cnvtView, ViewGroup parent) {
-        if (cnvtView == null) {
-            cnvtView = inflater.inflate(R.layout.spinner_main, parent, false);
         }
+        return getCustomView(position, convertView, parent);
+    }
 
-        TextView mainTextView = (TextView) cnvtView.findViewById(R.id.main_text);
-        mainTextView.setText(mainText);
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        notifyDataSetChanged();
+        return getCustomView(position, convertView, parent);
+    }
 
-        TextView spinnerTextView = (TextView) cnvtView.findViewById(R.id.spinner_text);
-        spinnerTextView.setText(spinnerArray[position]);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    //To show default text on spinner
+    public void setDefaultText(String defaultText) {
+        this.mFirstElement = mObjects[0];
+        mObjects[0] = defaultText;
+    }
 
+
+    //Customize the spinner view
+    public View getCustomView(int position, View convertView, ViewGroup parent) {
+
+        ViewHolder viewHolder;
+
+        if (convertView == null) {
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.item_spinner_row, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.textView = convertView.findViewById(R.id.spinner_text);
+            convertView.setTag(viewHolder);
         } else {
-            spinnerTextView.setTextSize(16);
-            spinnerTextView.setTextColor(ContextCompat.getColor(mContext, R.color.mid_black));
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        return cnvtView;
+        viewHolder = (ViewHolder) convertView.getTag();
+        viewHolder.textView.setText(mObjects[position]);
+
+        viewHolder.textView.setGravity(Gravity.CENTER);
+
+
+//        if(white){
+//            viewHolder.textView.setTextColor(Color.WHITE);
+//        }else if(grey){
+//            viewHolder.textView.setTextColor(ContextCompat.getColor(mContext,R.color.black));
+//        }
+//        else{
+//            viewHolder.textView.setTextColor(Color.BLACK);
+//        }
+
+        return convertView;
     }
 
-    private View getCustomDropDownView(int position, View cnvtView, ViewGroup parent) {
-        if (cnvtView == null) {
-            cnvtView = inflater.inflate(R.layout.spinner_dropdown, parent, false);
-        }
-
-        TextView spinnerTextView = (TextView) cnvtView.findViewById(R.id.spinner_textView);
-        spinnerTextView.setText(spinnerArray[position]);
-        return cnvtView;
+    private class ViewHolder {
+        TextView textView;
     }
+
 }

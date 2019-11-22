@@ -1,16 +1,23 @@
 package com.example.streetbellpos.models.gson;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+
+@Entity
 public class AddOnServices {
+
+    @PrimaryKey
     @SerializedName("id")
-    String id;
+    public String id;
     @SerializedName("name")
-    String name;
+    public String name;
     @SerializedName("optional")
-    String optional;
+    public String optional;
     @SerializedName("price")
-    String price;
+    public String price;
 
     public String getId() {
         return id;

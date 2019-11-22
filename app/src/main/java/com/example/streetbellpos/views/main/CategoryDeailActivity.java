@@ -71,6 +71,7 @@ public class CategoryDeailActivity extends StreetbellppCompatActivity implements
             showframent(pos);
         } );
         mTabRV.setAdapter(mCatDeailAdapter);
+        mTabRV.scrollToPosition(clickedPos);
 
         showframent(clickedPos);
 

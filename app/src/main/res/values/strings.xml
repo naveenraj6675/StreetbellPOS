@@ -11,6 +11,8 @@
     <string name="code">Code</string>
     <string name="next">Next</string>
     <string name="enter_code">Enter the code!!</string>
+    <string name="enter_name">Enter your name!!!</string>
+    <string name="enter_prrof_no">Enter the proof number!!!</string>
     <string name="enter_number">Please enter mobile number</string>
     <string name="enter_password">Enter Password!!</string>
     <string name="password_length_error">Password should contain 6 digits</string>

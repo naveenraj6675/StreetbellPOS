@@ -3,6 +3,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.main.CartActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/date_tv"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:layout_marginTop="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                android:padding="@dimen/padding_10x"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/name1_et"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                android:hint="Enter your name"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="@dimen/padding_10x"
+                app:layout_constraintTop_toBottomOf="@+id/date_tv" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/price_spinner_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name1_et">
+
+                <Spinner
+                    android:id="@+id/price_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10x"
+                    android:background="@null"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/proof_spinner_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                <Spinner
+                    android:id="@+id/proof_spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_10x"
+                    android:background="@null"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/proof_et"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                android:hint="Enter your proof id number"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:padding="@dimen/padding_10x"
+                app:layout_constraintTop_toBottomOf="@+id/proof_spinner_rl" />
+
+            <Button
+                android:id="@+id/issue_ticket_btn"
+                style="@style/TextView.Black.Body1.MontserratRegulat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_gray"
+                android:paddingStart="@dimen/padding_10x"
+                android:paddingEnd="@dimen/padding_10x"
+                android:text="Issue Ticket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/proof_et" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
