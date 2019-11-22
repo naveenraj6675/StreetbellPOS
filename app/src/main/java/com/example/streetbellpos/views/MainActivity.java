@@ -27,6 +27,12 @@ public class MainActivity extends StreetbellppCompatActivity {
     RecyclerView mCategoryRV;
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     //    private MainViewmodel mViewModel;
     private ArrayList<ProductCategories> mCategoryList;
     private ArrayList<Products> mProductList;

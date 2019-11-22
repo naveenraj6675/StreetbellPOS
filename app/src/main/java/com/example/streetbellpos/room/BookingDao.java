@@ -12,10 +12,14 @@ import java.util.List;
 @Dao
 public interface BookingDao {
 
-    @Query("SELECT * FROM bookingDetails")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(BookingDetails word);
+
+    @Query("DELETE FROM bookingTable")
+    void deleteAll();
+
+    @Query("SELECT * FROM bookingTable")
     List<BookingDetails> getAllBooking();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(BookingDetails directors);
 
 }

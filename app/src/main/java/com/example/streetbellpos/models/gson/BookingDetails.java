@@ -1,25 +1,30 @@
 package com.example.streetbellpos.models.gson;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-@Entity(tableName = "bookingDetails", primaryKeys = {"id", "uId"})
-public class BookingDetails {
+
+//@Entity(tableName = "bookingDetails",indices={@Index(value="id", unique=true)})
+
+@Entity(tableName = "bookingTable")
+public class BookingDetails implements Serializable {
+
+
+
 
 
     @SerializedName("id")
-    @NonNull
-    public String id;
+    public int id;
     @SerializedName("uId")
-    @NonNull
     public String uId;
     @SerializedName("int_sellerid")
     public String intSellerid;
@@ -27,20 +32,21 @@ public class BookingDetails {
     public String apporweb;
     @SerializedName("int_pid")
     public String intPid;
-    @SerializedName("")
+    @SerializedName("float_unitprice")
     public String floatUnitprice;
     @SerializedName("order_status")
     public String orderStatus;
     @SerializedName("str_date")
     public String strDate;
+    @PrimaryKey(autoGenerate = true)
     @SerializedName("int_created")
-    public String intCreated;
+    int intCreated;
     @SerializedName("currency_code")
     public String currencyCode;
     @SerializedName("currency_symbol")
     public String currencySymbol;
     @SerializedName("orderid")
-    public String orderid;
+    String orderid;
     @SerializedName("gtotal")
     public String gtotal;
     @SerializedName("stotal")
@@ -83,11 +89,11 @@ public class BookingDetails {
     public String addonTotal;
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -147,11 +153,11 @@ public class BookingDetails {
         this.strDate = strDate;
     }
 
-    public String getIntCreated() {
+    public int getIntCreated() {
         return intCreated;
     }
 
-    public void setIntCreated(String intCreated) {
+    public void setIntCreated(int intCreated) {
         this.intCreated = intCreated;
     }
 

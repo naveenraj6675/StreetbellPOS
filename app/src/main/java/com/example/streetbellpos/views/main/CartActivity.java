@@ -2,6 +2,7 @@ package com.example.streetbellpos.views.main;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -18,6 +19,7 @@ import com.example.streetbellpos.helpers.FormValidator;
 import com.example.streetbellpos.models.gson.BookingDetails;
 import com.example.streetbellpos.models.gson.Products;
 import com.example.streetbellpos.room.BookingDatabase;
+import com.example.streetbellpos.views.MainActivity;
 import com.example.streetbellpos.views.base.StreetbellppCompatActivity;
 
 import java.net.Inet4Address;
@@ -55,14 +57,18 @@ public class CartActivity extends StreetbellppCompatActivity {
     int mYear = mcurrentDate.get(Calendar.YEAR);
     int mMonth = mcurrentDate.get(Calendar.MONTH);
     int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
-    Date currentTime = Calendar.getInstance().getTime();
-    private String price, date, errorMsg;
+    Date time_date = Calendar.getInstance().getTime();
+    String time = String.valueOf(time_date.getTime());
+
+
+    private String price, date, errorMsg, orderId;
     private String[] mpriceName = new String[0];
     private ArrayList<String> mProofNameList = new ArrayList<>();
     private String[] mProofName = new String[0];
     private ArrayList<String> mPriceList = new ArrayList<>();
     private BookingDetails mBookingDetails;
     private BookingDatabase bookingDatabase;
+
 
     public static String getLocalIpAddress() {
         try {
@@ -92,7 +98,7 @@ public class CartActivity extends StreetbellppCompatActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
         mBookingDetails = new BookingDetails();
-        bookingDatabase = Room.databaseBuilder(this, BookingDatabase.class, "bookingDatabase").build();
+        bookingDatabase = Room.databaseBuilder(this, BookingDatabase.class, "bookingDatabase").fallbackToDestructiveMigration().allowMainThreadQueries().build();
 
         initViews();
 
@@ -150,10 +156,19 @@ public class CartActivity extends StreetbellppCompatActivity {
 
     @OnClick({R.id.issue_ticket_btn})
     void onIssueTicketClicked() {
+        orderId = "S" + getSharedPrefManager().getPreference(StreetBellConstants.USER_ID) + "-" + time + getSharedPrefManager().getPreference(StreetBellConstants.USER_ID);
 
         if (validateFormData()) {
             setBooking();
             bookingDatabase.bookingDao().insert(mBookingDetails);
+            showAlertDialogOk("POS", "Your order placed successfullt", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
 
         } else {
             showAlertDialogOk("POS", errorMsg, new DialogInterface.OnClickListener() {
@@ -185,9 +200,20 @@ public class CartActivity extends StreetbellppCompatActivity {
         return formOk;
     }
 
+    public int sumDigits(CharSequence s) {
+        int total = 0;
+        int length = s.length();
+        for (int i = 0; i < length; i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c))
+                total += Character.getNumericValue(c);
+        }
+        return total;
+    }
+
 
     private void setBooking() {
-        mBookingDetails.setId(mProducts.getpId());
+        mBookingDetails.setId(Integer.parseInt(mProducts.getpId()));
 
         mBookingDetails.setuId(getSharedPrefManager().getPreference(StreetBellConstants.USER_ID));
 
@@ -203,13 +229,13 @@ public class CartActivity extends StreetbellppCompatActivity {
 
         mBookingDetails.setStrDate(date);
 
-        mBookingDetails.setIntCreated(currentTime.toString());
+        mBookingDetails.setIntCreated(sumDigits(time));
 
         mBookingDetails.setCurrencyCode(mProducts.getCurrencyCode());
 
         mBookingDetails.setCurrencySymbol(mProducts.getCurrencySymbol());
 
-        mBookingDetails.setOrderid("");
+        mBookingDetails.setOrderid(orderId);
 
         mBookingDetails.setGtotal("");
 
