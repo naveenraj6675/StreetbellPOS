@@ -98,7 +98,7 @@ public class CartActivity extends StreetbellppCompatActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
         mBookingDetails = new BookingDetails();
-        bookingDatabase = Room.databaseBuilder(this, BookingDatabase.class, "bookingDatabase").fallbackToDestructiveMigration().allowMainThreadQueries().build();
+        bookingDatabase = Room.databaseBuilder(this, BookingDatabase.class, "bookingDatabase").allowMainThreadQueries().build();
 
         initViews();
 
@@ -161,6 +161,7 @@ public class CartActivity extends StreetbellppCompatActivity {
         if (validateFormData()) {
             setBooking();
             bookingDatabase.bookingDao().insert(mBookingDetails);
+
             showAlertDialogOk("POS", "Your order placed successfullt", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -213,6 +214,7 @@ public class CartActivity extends StreetbellppCompatActivity {
 
 
     private void setBooking() {
+
         mBookingDetails.setId(Integer.parseInt(mProducts.getpId()));
 
         mBookingDetails.setuId(getSharedPrefManager().getPreference(StreetBellConstants.USER_ID));

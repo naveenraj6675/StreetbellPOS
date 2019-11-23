@@ -14,10 +14,23 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_15x"
         android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/ic_sb"
         android:text="@string/streetbell"
         app:layout_constraintEnd_toStartOf="@+id/home_iv"
-        app:layout_constraintStart_toEndOf="@+id/ic_sb"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/ic_sb" />
+
+    <ImageView
+        android:id="@+id/ic_sync"
+        android:layout_width="@dimen/width_50x"
+        android:layout_height="@dimen/height_50x"
+        android:layout_marginEnd="@dimen/margin_5x"
+        android:padding="@dimen/padding_5x"
+        android:src="@drawable/ic_sync"
+        app:layout_constraintBottom_toBottomOf="@+id/home_iv"
+        app:layout_constraintEnd_toStartOf="@+id/home_iv"
+        app:layout_constraintTop_toTopOf="@+id/home_iv"
+
+        />
 
     <ImageView
         android:id="@+id/ic_sb"

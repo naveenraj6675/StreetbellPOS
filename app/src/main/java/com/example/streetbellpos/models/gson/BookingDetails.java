@@ -8,6 +8,9 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -17,10 +20,6 @@ import java.util.ArrayList;
 
 @Entity(tableName = "bookingTable")
 public class BookingDetails implements Serializable {
-
-
-
-
 
     @SerializedName("id")
     public int id;
@@ -346,6 +345,44 @@ public class BookingDetails implements Serializable {
         this.addonTotal = addonTotal;
     }
 
+    public JSONObject getJSONObject() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("id", id);
+            obj.put("uId", uId);
+            obj.put("int_sellerid", intSellerid);
+            obj.put("float_unitprice", floatUnitprice);
+            obj.put("int_pid", intPid);
+            obj.put("order_status", orderStatus);
+            obj.put("int_created", intCreated);
+            obj.put("currency_code", currencyCode);
+            obj.put("currency_symbol", currencySymbol);
+            obj.put("orderid", orderid);
+            obj.put("gstpercent", gstpercent);
+            obj.put("stotal", stotal);
+            obj.put("gstotal", gtotal);
+            obj.put("othercharges", othercharges);
+            obj.put("gstamount", gstamount);
+            obj.put("bookingdate", bookingdate);
+            obj.put("customername", customername);
+            obj.put("customercat", customercat);
+            obj.put("proofdoc", proofdoc);
+            obj.put("pdocnumber", pdocnumber);
+            obj.put("shopping_amount", shoppingAmount);
+            obj.put("int_status", intStatus);
+            obj.put("str_userip", strUserip);
+            obj.put("usecod", usecod);
+            obj.put("addon_include", addonInclude);
+            obj.put("addon_gstamount", addonGstamount);
+            obj.put("addon_stotal", addonStotal);
+            obj.put("addon_total", addonTotal);
+
+        } catch (JSONException e) {
+            System.out.println("null");
+        }
+        return obj;
+    }
+
 
     public class Converters {
         @TypeConverter
@@ -362,6 +399,5 @@ public class BookingDetails implements Serializable {
             return json;
         }
     }
-
 
 }

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.streetbellpos.managers.RetrofitManager;
+import com.example.streetbellpos.models.gson.BookingResponse;
 import com.example.streetbellpos.models.gson.CategoryResponse;
 import com.example.streetbellpos.models.gson.LoginResponse;
 import com.example.streetbellpos.models.gson.MainLoginResponse;
@@ -25,6 +26,7 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
     private MutableLiveData<ArrayList<LoginResponse>> mobileLoginMutableLiveData = new MutableLiveData<ArrayList<LoginResponse>>();
     private MutableLiveData<ArrayList<MainLoginResponse>> passwordCheckMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<CategoryResponse> categoryResponseMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<BookingResponse> bookingResponseMutableLiveData = new MutableLiveData<>();
     public LaunchViewModel(@NonNull Application application) {
         super(application);
     }
@@ -121,12 +123,41 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
         });
     }
 
+
+    public void uploadBooking(JsonObject jsonObject) {
+        RetrofitManager.getInstance(getApplication()).getMainApi().uploadBooking(jsonObject).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<BookingResponse>() {
+
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d("Booking", "Subscribe");
+            }
+
+            @Override
+            public void onNext(BookingResponse bookingResponse) {
+                if (bookingResponse != null) {
+                    bookingResponseMutableLiveData.postValue(bookingResponse);
+                } else {
+                    errorLiveData.postValue(bookingResponse.getError());
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                errorLiveData.postValue(e.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d("Booking", "Complete");
+            }
+        });
+
+
+    }
+
     public MutableLiveData<CategoryResponse> getCategoryResponseMutableLiveData() {
         return categoryResponseMutableLiveData;
     }
-
-
-
 
     public MutableLiveData<ArrayList<LoginResponse>> getMobileLoginMutableLiveData() {
         return mobileLoginMutableLiveData;
@@ -137,6 +168,10 @@ public class LaunchViewModel extends StreetbellBaseViewModel {
     }
     public MutableLiveData<String> getErrorLiveData() {
         return errorLiveData;
+    }
+
+    public MutableLiveData<BookingResponse> getBookingResponseLiveData() {
+        return bookingResponseMutableLiveData;
     }
 
 
