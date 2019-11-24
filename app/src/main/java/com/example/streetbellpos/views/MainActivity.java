@@ -3,6 +3,7 @@ package com.example.streetbellpos.views;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SubscriptionInfo;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -25,13 +26,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,11 +44,18 @@ public class MainActivity extends StreetbellppCompatActivity {
     RecyclerView mCategoryRV;
     @BindView(R.id.ic_sync)
     ImageView mSyncIV;
+
+
+    public static boolean isMultiSimEnabled = false;
+    public static String sim1, sim2;
+
+    public static List<SubscriptionInfo> subInfoList;
+    public static ArrayList<String> Numbers;
+
+
     private LaunchViewModel mViewModel;
     private List<BookingDetails> mBookingList;
     private ArrayList<ProductCategories> mCategoryList;
-    private List<BookingDetails> sendBookingList;
-    private BookingDetails bookingDetails = new BookingDetails();
     private Gson gson = new GsonBuilder().create();
     private BookingDatabase bookingDatabase;
 
@@ -58,6 +64,7 @@ public class MainActivity extends StreetbellppCompatActivity {
         super.onBackPressed();
         finishAffinity();
     }
+
     private CategoryRecyclerAdapter mCatAdapter;
 
     @Override
@@ -68,7 +75,6 @@ public class MainActivity extends StreetbellppCompatActivity {
         mViewModel = ViewModelProviders.of(this).get(LaunchViewModel.class);
         mCategoryList = new ArrayList<>();
         mBookingList = new ArrayList<>();
-        sendBookingList = new ArrayList<>();
         bookingDatabase = Room.databaseBuilder(this, BookingDatabase.class, "bookingDatabase").fallbackToDestructiveMigration().allowMainThreadQueries().build();
         mBookingList.addAll(bookingDatabase.bookingDao().getAllBooking());
         initProgress();
@@ -91,7 +97,7 @@ public class MainActivity extends StreetbellppCompatActivity {
         mViewModel.getBookingResponseLiveData().observe(this, bookingResponse -> {
             hideProgress();
             if (bookingResponse.getStatusMessage().equals("success")) {
-                showAlertDialogOk("POS", "Your bookings uploaded successfully!!!", (dialog, which) -> dialog.dismiss());
+                showAlertDialogOk("POS", "Your bookings of " + mBookingList.size() + " items uploaded successfully!!!", (dialog, which) -> dialog.dismiss());
             }
         });
 
@@ -100,6 +106,7 @@ public class MainActivity extends StreetbellppCompatActivity {
 
 
     private void initViews() {
+
 
         String goalList = getSharedPrefManager().getPreference(StreetBellConstants.CATEGORY_LIST);
         ProductCategories[] goal = gson.fromJson(goalList, ProductCategories[].class);
@@ -131,7 +138,7 @@ public class MainActivity extends StreetbellppCompatActivity {
 
 
         mCategoryRV.setLayoutManager(new GridLayoutManager(this, 2));
-        mCatAdapter = new CategoryRecyclerAdapter(this, mCategoryList, pos -> {
+        mCatAdapter = new CategoryRecyclerAdapter(this, mList, pos -> {
             Intent intent = new Intent(this, CategoryDeailActivity.class);
             intent.putExtra(StreetBellConstants.CLICKED_POS, pos);
             startActivity(intent);
@@ -166,10 +173,7 @@ public class MainActivity extends StreetbellppCompatActivity {
             userObject.put("psiname", paiName);
             userObject.put("bookingdetails", jsonArray);
 
-
-//
             JsonParser jsonParser = new JsonParser();
-
             JsonObject gsonObject = (JsonObject) jsonParser.parse(String.valueOf(userObject));
 
             mViewModel.uploadBooking(gsonObject);
@@ -182,18 +186,29 @@ public class MainActivity extends StreetbellppCompatActivity {
     }
 
 
-    public String fromArrayList(List<BookingDetails> list) {
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        return json;
-    }
-
-    public ArrayList<BookingDetails> fromString(String value) {
-        Type listType = new TypeToken<ArrayList<BookingDetails>>() {
-        }.getType();
-        return new Gson().fromJson(value, listType);
-    }
-
-
+//    private void GetCarriorsInformation() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//                    subInfoList = mSubscriptionManager.getActiveSubscriptionInfoList();
+//                }else{
+//                    showSnackbar("No permission");
+//                }
+//
+//            }
+//        }
+//
+//        if (subInfoList.size() > 1) {
+//            isMultiSimEnabled = true;
+//        }
+//        for (SubscriptionInfo subscriptionInfo : subInfoList) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+//                Numbers.add(subscriptionInfo.getNumber());
+//                sim1 = Numbers.get(0);
+//                sim2 = Numbers.get(1);
+//
+//            }
+//        }
+//    }
 
 }

@@ -271,6 +271,8 @@ public class CartActivity extends StreetbellppCompatActivity {
 
         mBookingDetails.setShoppingAmount("");
 
+        mBookingDetails.setAddOnServicesList(mProducts.getAddonList());
+
         mBookingDetails.setIntStatus("");
 
         mBookingDetails.setStrUserip(getLocalIpAddress());

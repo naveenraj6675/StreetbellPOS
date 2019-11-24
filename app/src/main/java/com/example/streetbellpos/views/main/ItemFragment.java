@@ -38,6 +38,7 @@ public class ItemFragment extends StreetbellBaseFragment {
     private Products mProducts;
     private Gson gson;
 
+
     public static ItemFragment newInstance(Products products) {
         ItemFragment fragment = new ItemFragment();
         Bundle args = new Bundle();

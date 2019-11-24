@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 
 //@Entity(tableName = "bookingDetails",indices={@Index(value="id", unique=true)})
@@ -78,8 +79,8 @@ public class BookingDetails implements Serializable {
     public String usecod;
     @SerializedName("addon_include")
     public String addonInclude;
-    //    @SerializedName("addon_service")
-//    public List<AddOnServices> addOnServicesList;
+    @SerializedName("addon_service")
+    public List<AddOnServices> addOnServicesList;
     @SerializedName("addon_gstamount")
     public String addonGstamount;
     @SerializedName("addon_stotal")
@@ -87,6 +88,13 @@ public class BookingDetails implements Serializable {
     @SerializedName("addon_total")
     public String addonTotal;
 
+    public List<AddOnServices> getAddOnServicesList() {
+        return addOnServicesList;
+    }
+
+    public void setAddOnServicesList(List<AddOnServices> addOnServicesList) {
+        this.addOnServicesList = addOnServicesList;
+    }
 
     public int getId() {
         return id;
@@ -384,16 +392,16 @@ public class BookingDetails implements Serializable {
     }
 
 
-    public class Converters {
+    public static class Converters {
         @TypeConverter
-        public ArrayList<String> fromString(String value) {
+        public List<AddOnServices> fromString(String value) {
             Type listType = new TypeToken<ArrayList<String>>() {
             }.getType();
             return new Gson().fromJson(value, listType);
         }
 
         @TypeConverter
-        public String fromArrayList(ArrayList<String> list) {
+        public String fromArrayList(List<AddOnServices> list) {
             Gson gson = new Gson();
             String json = gson.toJson(list);
             return json;

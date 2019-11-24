@@ -4,11 +4,11 @@
     android:layout_gravity="center_horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-    <TextView
+
+    <Button
         android:id="@+id/category_deail_btn"
         style="@style/TextView.Black.Subtitle1.MontserrateMedium"
         android:layout_width="match_parent"
-        android:background="@drawable/shape_corner_curved_gray"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:maxLines="1"
