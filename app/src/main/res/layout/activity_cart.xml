@@ -102,6 +102,71 @@
                 android:padding="@dimen/padding_10x"
                 app:layout_constraintTop_toBottomOf="@+id/proof_spinner_rl" />
 
+            <LinearLayout
+                android:id="@+id/visitor_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_15x"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/proof_et">
+
+                <EditText
+                    android:id="@+id/name2_et"
+                    style="@style/TextView.Black.Body1.MontserratRegulat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10x"
+                    android:background="@drawable/shape_corner_curved_gray"
+                    android:hint="Enter visitor name2"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/padding_10x"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/name3_et"
+                    style="@style/TextView.Black.Body1.MontserratRegulat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_10x"
+                    android:background="@drawable/shape_corner_curved_gray"
+                    android:hint="Enter visitor name3"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/padding_10x"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/name4_et"
+                    style="@style/TextView.Black.Body1.MontserratRegulat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_corner_curved_gray"
+                    android:hint="Enter visitor name4"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="@dimen/padding_10x"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/add_more_btn"
+                style="@style/TextView.Black.Body2.MontserrateLight"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_30x"
+                android:layout_margin="@dimen/margin_15x"
+                android:background="@drawable/shape_corner_curved_filled_primary_color"
+                android:paddingStart="@dimen/padding_5x"
+                android:paddingEnd="@dimen/padding_5x"
+                android:text="Add more visitor"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visitor_ll" />
+
+
             <Button
                 android:id="@+id/issue_ticket_btn"
                 style="@style/TextView.Black.Body1.MontserratRegulat"
@@ -115,7 +180,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/proof_et" />
+                app:layout_constraintTop_toBottomOf="@+id/add_more_btn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

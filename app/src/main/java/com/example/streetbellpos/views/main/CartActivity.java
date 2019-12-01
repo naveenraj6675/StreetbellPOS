@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -41,6 +42,12 @@ public class CartActivity extends StreetbellppCompatActivity {
     TextView mDataTV;
     @BindView(R.id.name1_et)
     EditText mName1ET;
+    @BindView(R.id.name2_et)
+    EditText mName2ET;
+    @BindView(R.id.name3_et)
+    EditText mName3ET;
+    @BindView(R.id.name4_et)
+    EditText mName4ET;
     @BindView(R.id.price_spinner)
     Spinner mPriceSpinner;
     @BindView(R.id.proof_spinner)
@@ -49,7 +56,8 @@ public class CartActivity extends StreetbellppCompatActivity {
     EditText mProofET;
     @BindView(R.id.issue_ticket_btn)
     Button mIssueTicketBtn;
-
+    @BindView(R.id.add_more_btn)
+    Button mAddMoreBtn;
 
 
     private Products mProducts;
@@ -63,6 +71,7 @@ public class CartActivity extends StreetbellppCompatActivity {
 
     private String price, date, errorMsg, orderId;
     private String[] mpriceName = new String[0];
+    int clickCount = 0;
     private ArrayList<String> mProofNameList = new ArrayList<>();
     private String[] mProofName = new String[0];
     private ArrayList<String> mPriceList = new ArrayList<>();
@@ -181,6 +190,34 @@ public class CartActivity extends StreetbellppCompatActivity {
         }
 
 
+    }
+
+    @OnClick(R.id.add_more_btn)
+    void onAddmoreBtnClicked() {
+        if (mAddMoreBtn.getText().equals("Add more visitor")) {
+            clickCount++;
+
+            if (clickCount == 1) {
+                mName2ET.setVisibility(View.VISIBLE);
+            } else if (clickCount == 2) {
+                mName3ET.setVisibility(View.VISIBLE);
+            } else if (clickCount == 3) {
+                mAddMoreBtn.setText("Delete Visitor");
+                mName4ET.setVisibility(View.VISIBLE);
+            }
+        } else if (mAddMoreBtn.getText().equals("Delete Visitor")) {
+            clickCount--;
+
+            if (clickCount == 2) {
+                mName4ET.setVisibility(View.GONE);
+            } else if (clickCount == 1) {
+                mName3ET.setVisibility(View.GONE);
+
+            } else if (clickCount == 0) {
+                mAddMoreBtn.setText("Add more visitor");
+                mName2ET.setVisibility(View.GONE);
+            }
+        }
     }
 
 

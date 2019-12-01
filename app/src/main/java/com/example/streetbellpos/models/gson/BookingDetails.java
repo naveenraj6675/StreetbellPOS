@@ -13,11 +13,9 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 
-//@Entity(tableName = "bookingDetails",indices={@Index(value="id", unique=true)})
 
 @Entity(tableName = "bookingTable")
 public class BookingDetails implements Serializable {
@@ -395,7 +393,7 @@ public class BookingDetails implements Serializable {
     public static class Converters {
         @TypeConverter
         public List<AddOnServices> fromString(String value) {
-            Type listType = new TypeToken<ArrayList<String>>() {
+            Type listType = new TypeToken<List<AddOnServices>>() {
             }.getType();
             return new Gson().fromJson(value, listType);
         }
