@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -106,47 +107,424 @@
                 android:id="@+id/visitor_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_15x"
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/proof_et">
 
-                <EditText
-                    android:id="@+id/name2_et"
-                    style="@style/TextView.Black.Body1.MontserratRegulat"
+                <LinearLayout
+                    android:id="@+id/visitor1_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_10x"
-                    android:background="@drawable/shape_corner_curved_gray"
-                    android:hint="Enter visitor name2"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:padding="@dimen/padding_10x"
-                    android:visibility="gone" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
 
-                <EditText
-                    android:id="@+id/name3_et"
-                    style="@style/TextView.Black.Body1.MontserratRegulat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_10x"
-                    android:background="@drawable/shape_corner_curved_gray"
-                    android:hint="Enter visitor name3"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:padding="@dimen/padding_10x"
-                    android:visibility="gone" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor1_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
 
-                <EditText
-                    android:id="@+id/name4_et"
-                    style="@style/TextView.Black.Body1.MontserratRegulat"
+                        <Spinner
+                            android:id="@+id/visitor1_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name2_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name2"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitor2_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/shape_corner_curved_gray"
-                    android:hint="Enter visitor name4"
-                    android:inputType="textPersonName"
-                    android:maxLines="1"
-                    android:padding="@dimen/padding_10x"
-                    android:visibility="gone" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor2_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor2_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name3_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name3"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/visitor3_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor3_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor3_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name4_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name4"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/visitor4_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor4_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor4_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name5_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name5"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitor5_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor5_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor5_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name6_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name6"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/visitor6_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor6_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor6_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name7_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name7"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitor7_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor7_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor7_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name8_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name8"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitor8_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor8_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor8_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name9_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name9"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/visitor9_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_15x"
+                    android:visibility="gone">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/visitor9_cl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/price_spinner_rl">
+
+                        <Spinner
+                            android:id="@+id/visitor9_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10x"
+                            android:background="@null"
+                            android:textAlignment="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <EditText
+                        android:id="@+id/name10_et"
+                        style="@style/TextView.Black.Body1.MontserratRegulat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10x"
+                        android:background="@drawable/shape_corner_curved_gray"
+                        android:hint="Enter visitor name10"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="@dimen/padding_10x" />
+
+
+                </LinearLayout>
 
 
             </LinearLayout>

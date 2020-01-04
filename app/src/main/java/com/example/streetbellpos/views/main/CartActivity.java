@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -48,12 +49,60 @@ public class CartActivity extends StreetbellppCompatActivity {
     EditText mName3ET;
     @BindView(R.id.name4_et)
     EditText mName4ET;
+    @BindView(R.id.name5_et)
+    EditText mName5ET;
+    @BindView(R.id.name6_et)
+    EditText mName6ET;
+    @BindView(R.id.name7_et)
+    EditText mName7ET;
+    @BindView(R.id.name8_et)
+    EditText mName8ET;
+    @BindView(R.id.name9_et)
+    EditText mName49ET;
+    @BindView(R.id.name10_et)
+    EditText mName10ET;
     @BindView(R.id.price_spinner)
     Spinner mPriceSpinner;
     @BindView(R.id.proof_spinner)
     Spinner mProofSpinner;
+    @BindView(R.id.visitor1_spinner)
+    Spinner mVisitorSpinner1;
+    @BindView(R.id.visitor2_spinner)
+    Spinner mVisitorSpinner2;
+    @BindView(R.id.visitor3_spinner)
+    Spinner mVisitorSpinner3;
+    @BindView(R.id.visitor4_spinner)
+    Spinner mVisitorSpinner4;
+    @BindView(R.id.visitor5_spinner)
+    Spinner mVisitorSpinner5;
+    @BindView(R.id.visitor6_spinner)
+    Spinner mVisitorSpinner6;
+    @BindView(R.id.visitor7_spinner)
+    Spinner mVisitorSpinner7;
+    @BindView(R.id.visitor8_spinner)
+    Spinner mVisitorSpinner8;
+    @BindView(R.id.visitor9_spinner)
+    Spinner mVisitorSpinner9;
     @BindView(R.id.proof_et)
     EditText mProofET;
+    @BindView(R.id.visitor1_ll)
+    LinearLayout visitor1LL;
+    @BindView(R.id.visitor2_ll)
+    LinearLayout visitor2LL;
+    @BindView(R.id.visitor3_ll)
+    LinearLayout visitor3LL;
+    @BindView(R.id.visitor4_ll)
+    LinearLayout visitor4LL;
+    @BindView(R.id.visitor5_ll)
+    LinearLayout visitor5LL;
+    @BindView(R.id.visitor6_ll)
+    LinearLayout visitor6LL;
+    @BindView(R.id.visitor7_ll)
+    LinearLayout visitor7LL;
+    @BindView(R.id.visitor8_ll)
+    LinearLayout visitor8LL;
+    @BindView(R.id.visitor9_ll)
+    LinearLayout visitor9LL;
     @BindView(R.id.issue_ticket_btn)
     Button mIssueTicketBtn;
     @BindView(R.id.add_more_btn)
@@ -114,7 +163,7 @@ public class CartActivity extends StreetbellppCompatActivity {
     }
 
     private void initViews() {
-        date = mYear + "-" + mMonth + "-" + mDay;
+        date = mYear + "-" + mMonth + 1 + "-" + mDay;
         mDataTV.setText(date);
 
 
@@ -135,9 +184,16 @@ public class CartActivity extends StreetbellppCompatActivity {
 
         SpinnerAdapter spinnerAdapter = new SpinnerAdapter(this, 0, mpriceName, mpriceName[0]);
         mPriceSpinner.setAdapter(spinnerAdapter);
-        mPriceSpinner.setTag(spinnerAdapter);
-
-
+        mVisitorSpinner1.setAdapter(spinnerAdapter);
+        mVisitorSpinner2.setAdapter(spinnerAdapter);
+        mVisitorSpinner3.setAdapter(spinnerAdapter);
+        mVisitorSpinner4.setAdapter(spinnerAdapter);
+        mVisitorSpinner5.setAdapter(spinnerAdapter);
+        mVisitorSpinner6.setAdapter(spinnerAdapter);
+        mVisitorSpinner7.setAdapter(spinnerAdapter);
+        mVisitorSpinner8.setAdapter(spinnerAdapter);
+        mVisitorSpinner9.setAdapter(spinnerAdapter);
+        
         SpinnerAdapter proofSpinnerAdapter = new SpinnerAdapter(this, 0, mProofName, mProofName[0]);
         mProofSpinner.setAdapter(proofSpinnerAdapter);
         mProofSpinner.setTag(proofSpinnerAdapter);
@@ -155,7 +211,7 @@ public class CartActivity extends StreetbellppCompatActivity {
 
         DatePickerDialog mDatePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                mDataTV.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
+                mDataTV.setText(selectedyear + "-" + selectedmonth + 1 + "-" + selectedday);
             }
         }, mYear, mMonth, mDay);
         mDatePicker.getDatePicker().setMaxDate(System.currentTimeMillis());
@@ -165,21 +221,25 @@ public class CartActivity extends StreetbellppCompatActivity {
 
     @OnClick({R.id.issue_ticket_btn})
     void onIssueTicketClicked() {
+        hideKeyboard();
         orderId = "S" + getSharedPrefManager().getPreference(StreetBellConstants.USER_ID) + "-" + time + getSharedPrefManager().getPreference(StreetBellConstants.USER_ID);
-
         if (validateFormData()) {
-            setBooking();
-            bookingDatabase.bookingDao().insert(mBookingDetails);
-
-            showAlertDialogOk("POS", "Your order placed successfullt", new DialogInterface.OnClickListener() {
+            showConfirmation("No", "Yes", "Issue ticket", "Are you sure to issue this ticket", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(CartActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            });
+                    setBooking();
+                    bookingDatabase.bookingDao().insert(mBookingDetails);
 
+                    showAlertDialogOk("POS", "Your order placed successfully", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            }, null);
         } else {
             showAlertDialogOk("POS", errorMsg, new DialogInterface.OnClickListener() {
                 @Override
@@ -188,8 +248,6 @@ public class CartActivity extends StreetbellppCompatActivity {
                 }
             });
         }
-
-
     }
 
     @OnClick(R.id.add_more_btn)
@@ -198,24 +256,53 @@ public class CartActivity extends StreetbellppCompatActivity {
             clickCount++;
 
             if (clickCount == 1) {
-                mName2ET.setVisibility(View.VISIBLE);
+                visitor1LL.setVisibility(View.VISIBLE);
             } else if (clickCount == 2) {
-                mName3ET.setVisibility(View.VISIBLE);
+                visitor2LL.setVisibility(View.VISIBLE);
             } else if (clickCount == 3) {
+//                mAddMoreBtn.setText("Delete Visitor");
+                visitor3LL.setVisibility(View.VISIBLE);
+            } else if (clickCount == 4) {
+                visitor4LL.setVisibility(View.VISIBLE);
+
+            } else if (clickCount == 5) {
+                visitor5LL.setVisibility(View.VISIBLE);
+            } else if (clickCount == 6) {
+                visitor6LL.setVisibility(View.VISIBLE);
+            } else if (clickCount == 7) {
+                visitor7LL.setVisibility(View.VISIBLE);
+
+            } else if (clickCount == 8) {
+                visitor8LL.setVisibility(View.VISIBLE);
+
+            } else if (clickCount == 9) {
+                visitor9LL.setVisibility(View.VISIBLE);
                 mAddMoreBtn.setText("Delete Visitor");
-                mName4ET.setVisibility(View.VISIBLE);
             }
         } else if (mAddMoreBtn.getText().equals("Delete Visitor")) {
             clickCount--;
 
-            if (clickCount == 2) {
-                mName4ET.setVisibility(View.GONE);
-            } else if (clickCount == 1) {
-                mName3ET.setVisibility(View.GONE);
+            if (clickCount == 8) {
+                visitor9LL.setVisibility(View.GONE);
+            } else if (clickCount == 7) {
+                visitor8LL.setVisibility(View.GONE);
 
+            } else if (clickCount == 6) {
+//                mAddMoreBtn.setText("Add more visitor");
+                visitor7LL.setVisibility(View.GONE);
+            } else if (clickCount == 5) {
+                visitor6LL.setVisibility(View.GONE);
+            } else if (clickCount == 4) {
+                visitor5LL.setVisibility(View.GONE);
+            } else if (clickCount == 3) {
+                visitor4LL.setVisibility(View.GONE);
+            } else if (clickCount == 2) {
+                visitor3LL.setVisibility(View.GONE);
+            } else if (clickCount == 1) {
+                visitor2LL.setVisibility(View.GONE);
             } else if (clickCount == 0) {
                 mAddMoreBtn.setText("Add more visitor");
-                mName2ET.setVisibility(View.GONE);
+                visitor1LL.setVisibility(View.GONE);
             }
         }
     }
