@@ -16,4 +16,29 @@
     <string name="enter_number">Please enter mobile number</string>
     <string name="enter_password">Enter Password!!</string>
     <string name="password_length_error">Password should contain 6 digits</string>
+    <string name="none_found">not found</string>
+
+    <string name="select_device">select a device to connect</string>
+    <string name="scanning">scanning for devices...</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="bluetooth_not_available">Bluetooth not available</string>
+    <string name="turnon_bluetooth">Turn on Bluetooth</string>
+    <string name="not_connected">Not Connected</string>
+    <string name="connected">Connected</string>
+    <string name="pic_load_error">Pic error</string>
+
+
+    <string name="title_paired_devices">Paired devices</string>
+    <string name="title_other_devices">Other devices</string>
+    <string name="button_scan">Scan devices</string>
+    <string name="print_succ">Print Successfully</string>
+    <string name="print_error">Error while printing</string>
+    <string name="connect_fail">Connection Failed</string>
+    <string name="connect_lost">Connection Lost</string>
+
+    <string name="to_book">To book online <u>streetbells.com</u></string>
+    <string name="for_quries">For queries call 1234567890 and press 3</string>
+    <string name="ticket_issues_desc">Ticket issues,cannot be transferred or refunded.</string>
+    <string name="thank_you">Thank you.</string>
+
 </resources>

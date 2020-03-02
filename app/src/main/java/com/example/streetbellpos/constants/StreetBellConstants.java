@@ -13,6 +13,8 @@ public class StreetBellConstants {
     public static final String PRODUCT_LIST = "PRODUCT_LIST";
     public static final String PRODUCT = "PRODUCT";
     public static final String CLICKED_POS = "CLICKED_POS";
+    public static final String USER_MOBILE = "USER_MOBILE";
+
 
     public static final String COUNTER_NUMBER = "COUNTER_NUMBER";
 

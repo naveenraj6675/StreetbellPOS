@@ -107,5 +107,7 @@
 
     <dimen name="pin_size">35dp</dimen>
 
+    <dimen name="textFontSize">18sp</dimen>
+
 
 </resources>

@@ -61,6 +61,7 @@ public class MobileLoginActivity extends StreetbellppCompatActivity {
                 getSharedPrefManager().setPreference(StreetBellConstants.PSI_NAME, loginResponses.get(0).getPsiName());
                 getSharedPrefManager().setPreference(StreetBellConstants.SHOP_ID, loginResponses.get(0).getShopId());
                 getSharedPrefManager().setPreference(StreetBellConstants.COUNTER_NUMBER, loginResponses.get(0).getTableNumber());
+                getSharedPrefManager().setPreference(StreetBellConstants.USER_MOBILE, loginResponses.get(0).getMobileNumber());
 
                 Intent intent = new Intent(this, MainLoginActivity.class);
                 startActivity(intent);

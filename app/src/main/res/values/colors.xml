@@ -44,5 +44,7 @@
     <color name="pale_green">#7eff80</color>
     <color name="progress_wheel_green">#54b62d</color>
 
+    <color name="colorTextIcons">#FFFFFF</color>
+
     <color name="splash_color">#fbfbfb</color>
 </resources>
